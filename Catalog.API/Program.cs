@@ -27,7 +27,7 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
         app.UseRouting();
         app.UseCors(Policies.CORS_MAIN);
         app.UseAuthorization();
