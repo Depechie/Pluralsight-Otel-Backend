@@ -8,12 +8,24 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.3.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.3.1" />
+    <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.3.1" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.0.0-rc9.4" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.0.0-rc9.4" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.0.0-rc9.4" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="AspNetCore.HealthChecks.Uris" />
     <None Remove="Models\" />
     <None Remove="Extensions\" />
+    <None Remove="OpenTelemetry" />
+    <None Remove="OpenTelemetry.Exporter.Console" />
+    <None Remove="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
+    <None Remove="OpenTelemetry.Instrumentation.AspNetCore" />
+    <None Remove="OpenTelemetry.Extensions.Hosting" />
+    <None Remove="OpenTelemetry.Instrumentation.Http" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
