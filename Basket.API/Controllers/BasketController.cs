@@ -11,7 +11,7 @@ namespace Basket.API.Controllers
         [HttpPost]
         public IActionResult AddBasketItem([FromBody] BasketItem data)
         {
-            return Ok();
+            return Ok(data);
         }
     }
 }
