@@ -1,5 +1,7 @@
 ﻿using Basket.API.Extensions;
 using Basket.API.Models;
+using Basket.API.Services;
+using Basket.API.Services.Interfaces;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -24,6 +26,8 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddHealthChecks();
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+        builder.Services.AddHttpClient<ICatalogService, CatalogService>();
 
         builder.Services.AddOpenTelemetryTracing(builder =>
         {

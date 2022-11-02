@@ -20,10 +20,19 @@
     <None Remove="Controllers\" />
     <None Remove="Extensions\" />
     <None Remove="Models\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Extensions\" />
     <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

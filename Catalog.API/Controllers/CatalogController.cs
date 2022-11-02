@@ -3,6 +3,7 @@ using System.Net;
 using System.Xml.Linq;
 using Catalog.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace Catalog.API.Controllers
 {
@@ -47,6 +48,13 @@ namespace Catalog.API.Controllers
         public IActionResult Items()
         {
             return Ok(_products);
+        }
+
+        [HttpGet]
+        [Route("items/{id}")]
+        public IActionResult GetItem(string id)
+        {
+            return Ok(_products.FirstOrDefault(i => string.Equals(i.Id, id, StringComparison.InvariantCultureIgnoreCase)));
         }
     }
 }

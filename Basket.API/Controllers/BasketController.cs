@@ -1,5 +1,6 @@
 ﻿using System;
 using Basket.API.Models;
+using Basket.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
@@ -8,10 +9,18 @@ namespace Basket.API.Controllers
     [ApiController]
     public class BasketController : ControllerBase
     {
-        [HttpPost]
-        public IActionResult AddBasketItem([FromBody] BasketItem data)
+        private readonly ICatalogService _catalogService;
+
+        public BasketController(ICatalogService catalogService)
         {
-            return Ok(data);
+            _catalogService = catalogService;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddBasketItem([FromBody] BasketItem item)
+        {
+            var product = await _catalogService.GetProduct(item.ProductId);
+            return Ok(item);
         }
     }
 }
