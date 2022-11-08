@@ -1,5 +1,4 @@
-﻿using System;
-using Catalog.API.Models;
+﻿using Catalog.API.Models;
 
 namespace Catalog.API.Extensions
 {
