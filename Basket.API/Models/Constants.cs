@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Basket.API.Models
+﻿namespace Basket.API.Models
 {
     public static class Policies
     {

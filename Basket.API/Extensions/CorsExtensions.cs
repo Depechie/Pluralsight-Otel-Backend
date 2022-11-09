@@ -1,5 +1,4 @@
-﻿using System;
-using Basket.API.Models;
+﻿using Basket.API.Models;
 
 namespace Basket.API.Extensions
 {

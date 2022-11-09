@@ -1,8 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Xml.Linq;
-using Catalog.API.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Models;
 
 namespace Catalog.API.Controllers

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using Basket.API.Services.Interfaces;
 using Models;
-using static Google.Protobuf.Reflection.SourceCodeInfo.Types;
 
 namespace Basket.API.Services
 {

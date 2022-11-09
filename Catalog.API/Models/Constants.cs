@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Catalog.API.Models
+﻿namespace Catalog.API.Models
 {
     public static class Policies
     {

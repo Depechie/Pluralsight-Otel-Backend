@@ -1,5 +1,4 @@
-﻿using System;
-using Models;
+﻿using Models;
 
 namespace Basket.API.Services.Interfaces
 {

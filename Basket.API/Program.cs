@@ -3,7 +3,6 @@ using Basket.API.Models;
 using Basket.API.Services;
 using Basket.API.Services.Interfaces;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;

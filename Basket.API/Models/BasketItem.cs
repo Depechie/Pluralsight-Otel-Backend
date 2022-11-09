@@ -1,5 +1,4 @@
-﻿using System;
-namespace Basket.API.Models
+﻿namespace Basket.API.Models
 {
     public class BasketItem
     {
@@ -15,4 +14,3 @@ namespace Basket.API.Models
         }
     }
 }
-
