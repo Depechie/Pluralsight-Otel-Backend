@@ -28,7 +28,7 @@ public class Program
 
         builder.Services.AddHttpClient<ICatalogService, CatalogService>();
 
-        builder.Services.AddOpenTelemetryTracing(builder =>
+        builder.Services.AddOpenTelemetry().WithTracing(builder =>
         {
             builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(Configuration.GetValue<string>("Otlp:ServiceName")))
                 .AddAspNetCoreInstrumentation()
