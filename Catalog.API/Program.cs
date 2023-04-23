@@ -2,6 +2,7 @@
 using Catalog.API.Models;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
@@ -24,15 +25,24 @@ public class Program
         builder.Services.AddHealthChecks();
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-        builder.Services.AddOpenTelemetry().WithTracing(builder =>
-        {
-            builder.SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(Configuration.GetValue<string>("Otlp:ServiceName")))
+        Action<ResourceBuilder> appResourceBuilder =
+            resource => resource
+                .AddTelemetrySdk()
+                .AddService(Configuration.GetValue<string>("Otlp:ServiceName"));
+
+        builder.Services.AddOpenTelemetry()
+            .ConfigureResource(appResourceBuilder)
+            .WithTracing(builder => builder
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddSource("APITracing")
                 .AddConsoleExporter() // TODO: Glenn - Only add in app.Environment.IsDevelopment()
-                .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")));
-        });
+                .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")))
+            )
+            .WithMetrics(builder => builder
+                .AddRuntimeInstrumentation()
+                .AddAspNetCoreInstrumentation()
+                .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint"))));
 
         var app = builder.Build();
 
