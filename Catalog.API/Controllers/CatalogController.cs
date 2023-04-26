@@ -13,8 +13,8 @@ namespace Catalog.API.Controllers
         {
             _concerts.Add(new Concert("conc001", "Alexander Lemtov Live", "Alexander Lemtov Live", "Alexander Lemtov")
             {
-                ImageURL = "assets/img/product-img/product1.jpg",
-                HoverImageURL = "assets/img/product-img/product2.jpg",
+                ImageURL = "assets/img/product-img/concert_001.jpg",
+                HoverImageURL = "assets/img/product-img/concert_002.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
                 DateFrom = DateTime.Now.AddMonths(2),
                 DateTo = DateTime.Now.AddMonths(2).AddHours(4),
@@ -23,8 +23,8 @@ namespace Catalog.API.Controllers
 
             _concerts.Add(new Concert("conc002", "To The Moon And Back", "To The Moon And Back", "Santiago Martinez")
             {
-                ImageURL = "assets/img/product-img/product1.jpg",
-                HoverImageURL = "assets/img/product-img/product2.jpg",
+                ImageURL = "assets/img/product-img/concert_003.jpg",
+                HoverImageURL = "assets/img/product-img/concert_004.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
                 DateFrom = DateTime.Now.AddMonths(2),
                 DateTo = DateTime.Now.AddMonths(2).AddHours(4),
@@ -33,8 +33,8 @@ namespace Catalog.API.Controllers
 
             _concerts.Add(new Concert("conc003", "The State Of Affairs: Mariam Live!", "The State Of Affairs: Mariam Live!", "	Mariam Johnson")
             {
-                ImageURL = "assets/img/product-img/product1.jpg",
-                HoverImageURL = "assets/img/product-img/product2.jpg",
+                ImageURL = "assets/img/product-img/concert_005.jpg",
+                HoverImageURL = "assets/img/product-img/concert_006.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
                 DateFrom = DateTime.Now.AddMonths(2),
                 DateTo = DateTime.Now.AddMonths(2).AddHours(4),
