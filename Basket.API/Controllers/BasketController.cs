@@ -18,8 +18,15 @@ namespace Basket.API.Controllers
         [HttpPost]
         public async Task<IActionResult> AddBasketItem([FromBody] BasketItem item)
         {
-            var product = await _catalogService.GetProduct(item.ProductId);
+            var concert = await _catalogService.GetConcert(item.ConcertId);
             return Ok(item);
+        }
+
+        [HttpPost]
+        [Route("checkout")]
+        public IActionResult Checkout([FromBody] Basket.API.Models.Basket basket)
+        {
+            return Ok(basket);
         }
     }
 }

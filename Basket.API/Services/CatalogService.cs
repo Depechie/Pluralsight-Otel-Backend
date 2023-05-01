@@ -19,9 +19,9 @@ namespace Basket.API.Services
             };
         }
 
-        public async Task<Product> GetProduct(string productId)
+        public async Task<Concert> GetConcert(string concertId)
         {
-            return JsonSerializer.Deserialize<Product>(await _httpClient.GetStringAsync($"https://localhost:7001/api/v1/catalog/items/{productId}"), _options);
+            return JsonSerializer.Deserialize<Concert>(await _httpClient.GetStringAsync($"http://localhost:6001/api/v1/catalog/items/{concertId}"), _options);
         }
     }
 }

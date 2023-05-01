@@ -25,7 +25,7 @@ namespace Catalog.API.Controllers
             {
                 ImageURL = "assets/img/product-img/concert_003.jpg",
                 HoverImageURL = "assets/img/product-img/concert_004.jpg",
-                ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
+                ThumbnailImageURL = "assets/img/bg-img/cart2.jpg",
                 DateFrom = DateTime.Now.AddMonths(2),
                 DateTo = DateTime.Now.AddMonths(2).AddHours(4),
                 Price = 135.00M,
@@ -35,7 +35,7 @@ namespace Catalog.API.Controllers
             {
                 ImageURL = "assets/img/product-img/concert_005.jpg",
                 HoverImageURL = "assets/img/product-img/concert_006.jpg",
-                ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
+                ThumbnailImageURL = "assets/img/bg-img/cart3.jpg",
                 DateFrom = DateTime.Now.AddMonths(2),
                 DateTo = DateTime.Now.AddMonths(2).AddHours(4),
                 Price = 85.00M,
