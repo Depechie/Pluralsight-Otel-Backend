@@ -36,7 +36,7 @@ public class Program
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddSource("APITracing")
-                .AddConsoleExporter() // TODO: Glenn - Only add in app.Environment.IsDevelopment()
+                .AddConsoleExporter()
                 .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")))
             )
             .WithMetrics(builder => builder

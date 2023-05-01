@@ -7,6 +7,8 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using QueueFactory;
+using QueueFactory.Models;
 
 namespace Basket.API;
 
@@ -28,6 +30,7 @@ public class Program
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
         builder.Services.AddHttpClient<ICatalogService, CatalogService>();
+        builder.Services.AddSingleton(sp => RabbitMQFactory.CreateBus(BusType.LocalHost));
 
         Action<ResourceBuilder> appResourceBuilder =
             resource => resource
@@ -40,7 +43,7 @@ public class Program
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddSource("APITracing")
-                .AddConsoleExporter() // TODO: Glenn - Only add in app.Environment.IsDevelopment()
+                .AddConsoleExporter()
                 .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")))
             )
             .WithMetrics(builder => builder
