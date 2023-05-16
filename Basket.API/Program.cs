@@ -9,6 +9,7 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using QueueFactory;
 using QueueFactory.Models;
+using Serilog;
 
 namespace Basket.API;
 
@@ -27,6 +28,19 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         builder.Services.AddHealthChecks();
+
+        builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+            .ReadFrom.Configuration(hostingContext.Configuration)
+            .WriteTo.OpenTelemetry(options =>
+            {
+                options.Endpoint = "http://localhost:4317/v1/logs";
+                options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.GrpcProtobuf;
+                options.ResourceAttributes = new Dictionary<string, object>
+                {
+                    ["service.name"] = Configuration.GetValue<string>("Otlp:ServiceName")
+                };
+            }));
+
         builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
         builder.Services.AddHttpClient<ICatalogService, CatalogService>();
@@ -43,7 +57,7 @@ public class Program
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddSource("APITracing")
-                .AddConsoleExporter()
+                //.AddConsoleExporter()
                 .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")))
             )
             .WithMetrics(builder => builder
@@ -63,6 +77,7 @@ public class Program
         app.UseRouting();
         app.UseCors(Policies.CORS_MAIN);
         app.UseAuthorization();
+        app.UseSerilogRequestLogging();
 
         app.UseEndpoints(endpoints =>
         {

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Serilog;
 using ServiceWorker.Services;
 using ServiceWorker.Services.Interfaces;
 
@@ -20,6 +21,19 @@ namespace ServiceWorker
                 .AddCommandLine(args)
                 .Build();
 
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(Configuration)
+                .WriteTo.OpenTelemetry(options =>
+                {
+                    options.Endpoint = "http://localhost:4317/v1/logs";
+                    options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.GrpcProtobuf;
+                    options.ResourceAttributes = new Dictionary<string, object>
+                    {
+                        ["service.name"] = Configuration.GetValue<string>("Otlp:ServiceName")
+                    };
+                })
+                .CreateLogger();
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -36,12 +50,13 @@ namespace ServiceWorker
                         .ConfigureResource(appResourceBuilder)
                         .WithTracing(builder => builder
                             .AddSource("APITracing")
-                            .AddConsoleExporter()
+                            //.AddConsoleExporter()
                             .AddOtlpExporter(options => options.Endpoint = new Uri(Configuration.GetValue<string>("Otlp:Endpoint")))
                         );
 
                     services.AddHttpClient<ICatalogService, CatalogService>();
                     services.AddHostedService<Worker>();
-                });
+                })
+            .UseSerilog();
     }
 }

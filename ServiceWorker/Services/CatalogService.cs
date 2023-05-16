@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Microsoft.Extensions.Logging;
+using Models;
 using ServiceWorker.Services.Interfaces;
 using System.Text.Json;
 
@@ -8,10 +9,12 @@ namespace ServiceWorker.Services
     {
         private HttpClient _httpClient;
         private JsonSerializerOptions _options;
+        private ILogger<CatalogService> _logger;
 
-        public CatalogService(HttpClient httpClient)
+        public CatalogService(HttpClient httpClient, ILogger<CatalogService> logger)
         {
             _httpClient = httpClient;
+            _logger = logger;
 
             _options = new JsonSerializerOptions
             {
@@ -21,6 +24,7 @@ namespace ServiceWorker.Services
 
         public async Task<Concert> GetConcert(string concertId)
         {
+            _logger.LogInformation($"Get Concert {concertId}");
             return JsonSerializer.Deserialize<Concert>(await _httpClient.GetStringAsync($"http://localhost:6001/api/v1/catalog/items/{concertId}"), _options);
         }
     }
