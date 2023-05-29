@@ -25,7 +25,7 @@ namespace ServiceWorker
                 .ReadFrom.Configuration(Configuration)
                 .WriteTo.OpenTelemetry(options =>
                 {
-                    options.Endpoint = "http://localhost:4317/v1/logs";
+                    options.Endpoint = $"{Configuration.GetValue<string>("Otlp:Endpoint")}/v1/logs";
                     options.Protocol = Serilog.Sinks.OpenTelemetry.OtlpProtocol.GrpcProtobuf;
                     options.ResourceAttributes = new Dictionary<string, object>
                     {
