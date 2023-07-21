@@ -7,35 +7,38 @@ namespace Catalog.API.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
-        private List<Product> _products = new List<Product>();
+        private List<Concert> _concerts = new List<Concert>();
 
         public CatalogController()
         {
-            _products.Add(new Product("prod001", "Modern chair")
+            _concerts.Add(new Concert("conc001", "Alexander Lemtov Live", "Alexander Lemtov Live", "Alexander Lemtov")
             {
-                ImageURL = "assets/img/product-img/product1.jpg",
-                HoverImageURL = "assets/img/product-img/product2.jpg",
+                ImageURL = "assets/img/product-img/concert_001.jpg",
+                HoverImageURL = "assets/img/product-img/concert_002.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart1.jpg",
-                Price = 180,
-                Rating = 4
+                DateFrom = DateTime.Now.AddMonths(2),
+                DateTo = DateTime.Now.AddMonths(2).AddHours(4),
+                Price = 65.00M,
             });
 
-            _products.Add(new Product("prod002", "Vintage desk")
+            _concerts.Add(new Concert("conc002", "To The Moon And Back", "To The Moon And Back", "Santiago Martinez")
             {
-                ImageURL = "assets/img/product-img/product4.jpg",
-                HoverImageURL = "assets/img/product-img/product3.jpg",
+                ImageURL = "assets/img/product-img/concert_003.jpg",
+                HoverImageURL = "assets/img/product-img/concert_004.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart2.jpg",
-                Price = 250,
-                Rating = 4
+                DateFrom = DateTime.Now.AddMonths(2),
+                DateTo = DateTime.Now.AddMonths(2).AddHours(4),
+                Price = 135.00M,
             });
 
-            _products.Add(new Product("prod003", "Lounge chair")
+            _concerts.Add(new Concert("conc003", "The State Of Affairs: Mariam Live!", "The State Of Affairs: Mariam Live!", "	Mariam Johnson")
             {
-                ImageURL = "assets/img/product-img/product5.jpg",
-                HoverImageURL = "assets/img/product-img/product6.jpg",
+                ImageURL = "assets/img/product-img/concert_005.jpg",
+                HoverImageURL = "assets/img/product-img/concert_006.jpg",
                 ThumbnailImageURL = "assets/img/bg-img/cart3.jpg",
-                Price = 300,
-                Rating = 4
+                DateFrom = DateTime.Now.AddMonths(2),
+                DateTo = DateTime.Now.AddMonths(2).AddHours(4),
+                Price = 85.00M,
             });
         }
 
@@ -43,14 +46,14 @@ namespace Catalog.API.Controllers
         [Route("items")]
         public IActionResult Items()
         {
-            return Ok(_products);
+            return Ok(_concerts);
         }
 
         [HttpGet]
         [Route("items/{id}")]
         public IActionResult GetItem(string id)
         {
-            return Ok(_products.FirstOrDefault(i => string.Equals(i.Id, id, StringComparison.InvariantCultureIgnoreCase)));
+            return Ok(_concerts.FirstOrDefault(i => string.Equals(i.Id, id, StringComparison.InvariantCultureIgnoreCase)));
         }
     }
 }

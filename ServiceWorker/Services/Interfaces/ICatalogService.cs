@@ -1,6 +1,6 @@
 ﻿using Models;
 
-namespace Basket.API.Services.Interfaces
+namespace ServiceWorker.Services.Interfaces
 {
     public interface ICatalogService
     {
