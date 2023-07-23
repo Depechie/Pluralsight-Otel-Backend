@@ -24,7 +24,7 @@ namespace ServiceWorker.Services
 
         public async Task<Concert> GetConcert(string concertId)
         {
-            _logger.LogInformation($"Get Concert {concertId}");
+            _logger.LogInformation("Get Concert {concertId}", concertId);
             return JsonSerializer.Deserialize<Concert>(await _httpClient.GetStringAsync($"http://localhost:6001/api/v1/catalog/items/{concertId}"), _options);
         }
     }

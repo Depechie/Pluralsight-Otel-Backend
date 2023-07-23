@@ -16,7 +16,6 @@ namespace ServiceWorker
 {
 	public class Worker : BackgroundService
     {
-        //private readonly ILogger<Worker> _logger;
         private readonly IBus _bus;
         private readonly ICatalogService _catalogService;
 
@@ -24,10 +23,8 @@ namespace ServiceWorker
         private static readonly ActivitySource Activity = new("APITracing");
         private static readonly TextMapPropagator Propagator = new TraceContextPropagator();
 
-        //public Worker(ILogger<Worker> logger)
         public Worker(ICatalogService catalogService)
         {
-            //_logger = logger;
             _bus = RabbitMQFactory.CreateBus(BusType.LocalHost);
             _catalogService = catalogService;
         }
@@ -48,8 +45,6 @@ namespace ServiceWorker
             using (var activity = Activity.StartActivity("Process Message", ActivityKind.Consumer, parentContext.ActivityContext))
             {
                 AddActivityTags(activity);
-                //System.Console.WriteLine($"Processing - {string.Join(",", message.Basket.ConcertIds)}");s
-                //_logger.LogInformation($"Message received location: {message.Latitude} - {message.Longitude}");
 
                 List<Task> tasks = new List<Task>();
                 foreach(var concertId in message?.Basket?.ConcertIds)
@@ -73,7 +68,6 @@ namespace ServiceWorker
             }
             catch (Exception ex)
             {
-                //_logger.LogError($"Failed to extract trace context: {ex}");
             }
 
             return Enumerable.Empty<string>();
