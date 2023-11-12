@@ -45,6 +45,7 @@ public class Program
 
         builder.Services.AddHttpClient<ICatalogService, CatalogService>();
         builder.Services.AddSingleton(sp => RabbitMQFactory.CreateBus(BusType.LocalHost));
+        // builder.Services.AddSingleton(sp => RabbitMQFactory.CreateBus(BusType.DockerHost));
 
         Action<ResourceBuilder> appResourceBuilder =
             resource => resource

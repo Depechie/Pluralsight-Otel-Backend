@@ -20,8 +20,9 @@ namespace Basket.API.Services
         }
 
         public async Task<Concert> GetConcert(string concertId)
-        {
+        {            
             return JsonSerializer.Deserialize<Concert>(await _httpClient.GetStringAsync($"http://localhost:6001/api/v1/catalog/items/{concertId}"), _options);
+            // return JsonSerializer.Deserialize<Concert>(await _httpClient.GetStringAsync($"http://host.docker.internal:6001/api/v1/catalog/items/{concertId}"), _options);
         }
     }
 }

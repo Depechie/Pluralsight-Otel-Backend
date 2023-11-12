@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueFactory", "QueueFactor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceWorker", "ServiceWorker\ServiceWorker.csproj", "{A3FD16FA-2DC8-426E-9A65-8EE2C7031552}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{400C2B8A-5AF3-4CF5-A9DA-A8B9CCF06860}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A3FD16FA-2DC8-426E-9A65-8EE2C7031552}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3FD16FA-2DC8-426E-9A65-8EE2C7031552}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3FD16FA-2DC8-426E-9A65-8EE2C7031552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400C2B8A-5AF3-4CF5-A9DA-A8B9CCF06860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400C2B8A-5AF3-4CF5-A9DA-A8B9CCF06860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400C2B8A-5AF3-4CF5-A9DA-A8B9CCF06860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400C2B8A-5AF3-4CF5-A9DA-A8B9CCF06860}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
