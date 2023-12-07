@@ -9,3 +9,5 @@ Logging is done with SeriLog and it uses an OpenTelemetry Sink to export logs to
 Traces are collected using the OpenTelemetry auto instrumentation for .NET.
 
 The infrastructure setup through docker can be found here [Pluralsight OTEL infrastructure](https://github.com/Depechie/Pluralsight-Otel-Infrastructure).
+
+For ease of use, there is also following repository [https://github.com/Depechie/Pluralsight-Otel-Demo](https://github.com/Depechie/Pluralsight-Otel-Demo) which contains the Backend and Infrastructure, along with a docker compose file that will spin up everything together.
